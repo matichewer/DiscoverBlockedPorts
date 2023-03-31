@@ -14,7 +14,7 @@ for PORT in {1..65535}; do
         OUTPUT=$(curl --silent --connect-timeout "${TIMEOUT}" portquiz.net:"${PORT}")
         CODE=$?
         
-        if [ ${CODE} -eq 7 ]; then
+        if [[ ${CODE} -eq 7 ]]; then
             echo "cURL Code: ${CODE}. Port: ${PORT}. Wait 1 min..."
             sleep 1m
         else
