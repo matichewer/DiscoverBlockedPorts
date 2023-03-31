@@ -1,7 +1,6 @@
 #!/bin/bash
 
 CANT_DE_PUERTOS=0
-echo $CANT_DE_PUERTOS
 
 while true; do
     
@@ -14,11 +13,11 @@ while true; do
         START_TIME=$(date +%s)  # obtener la hora actual en segundos
         echo "$START_TIME"
         echo "Cantidad de puertos escaneados hasta que me dieron ban: ${CANT_DE_PUERTOS}"
-
-        while true; do    
+        
+        while true; do
             curl --silent --connect-timeout 3 portquiz.net:80
             CODE=$?
-
+            
             if [ ${CODE} -eq 0 ]; then
                 END_TIME=$(date +%s)    # obtener la hora actual en segundos
                 TIME_ELAPSED=$((END_TIME - START_TIME))  # calcular el tiempo transcurrido
@@ -26,5 +25,5 @@ while true; do
                 exit
             fi
         done
-    fi    
+    fi
 done
