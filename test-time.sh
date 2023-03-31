@@ -11,7 +11,7 @@ while true; do
         CANT_DE_PUERTOS=$((CANT_DE_PUERTOS + 1))
     elif [[ ${CODE} -eq 7 ]]; then
         START_TIME=$(date +%s)  # obtener la hora actual en segundos
-        echo "${START_TIME}"
+        date
         echo "Cantidad de puertos escaneados hasta que me dieron ban: ${CANT_DE_PUERTOS}"
 
         while true; do    
@@ -25,5 +25,7 @@ while true; do
                 exit
             fi
         done
+    else
+        echo "Error no capturado. Code error: ${CODE}"
     fi    
 done
