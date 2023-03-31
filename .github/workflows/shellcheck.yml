@@ -13,7 +13,4 @@ jobs:
       - name: "ShellCheck"
         uses: ludeeus/action-shellcheck@2.0.0
         env:
-          SHELLCHECK_OPTS: --enable=all
-        with:
-          severity: warning
-          
+          SHELLCHECK_OPTS: --enable=all          
