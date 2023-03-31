@@ -1,6 +1,9 @@
 #!/bin/bash
 
+echo "Comenzando spam de chequeo de puertos..."
+
 CANT_DE_PUERTOS=0
+TIEMPO=30
 
 while true; do
     
@@ -11,17 +14,19 @@ while true; do
         CANT_DE_PUERTOS=$((CANT_DE_PUERTOS + 1))
     elif [[ ${CODE} -eq 7 ]]; then
         START_TIME=$(date +%s)  # obtener la hora actual en segundos
-        date
-        echo "Cantidad de puertos escaneados hasta que me dieron ban: ${CANT_DE_PUERTOS}"
+        echo "Baneado! Cantidad de puertos escaneados: ${CANT_DE_PUERTOS}"
+        echo
 
         while true; do    
-            curl --silent --connect-timeout 3 portquiz.net:80
+            echo "Sleep ${TIEMPO} seconds.."
+            sleep "${TIEMPO}"
+            curl --silent --connect-timeout 3 --output /devnull portquiz.net:80
             CODE=$?
-
+            
             if [[ ${CODE} -eq 0 ]]; then
                 END_TIME=$(date +%s)    # obtener la hora actual en segundos
                 TIME_ELAPSED=$((END_TIME - START_TIME))  # calcular el tiempo transcurrido
-                echo "Tiempo que tardaron en desbanearme ${TIME_ELAPSED}"
+                echo "Desbaneado! Tiempo que tardaron en desbanearme: ${TIME_ELAPSED} segundos"
                 exit
             fi
         done
