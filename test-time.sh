@@ -1,6 +1,7 @@
 #!/bin/bash
 
 CANT_DE_PUERTOS=0
+echo $CANT_DE_PUERTOS
 
 while true; do
     
