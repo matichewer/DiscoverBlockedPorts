@@ -1,14 +1,16 @@
+name: "ShellCheck"
 on:
   push:
     branches:
     - main
 
-
 jobs:
-  build:    
-    name: 'ShellCheck job'
+  shellcheck:    
+    name: 'ShellCheck'
     runs-on: ubuntu-latest
     steps:
       - name: "ShellCheck"
         uses: ludeeus/action-shellcheck@2.0.0
-        
+        with:
+          severity: all
+          
