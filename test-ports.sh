@@ -2,11 +2,12 @@
 
 # Set timeout for testing each port
 TIMEOUT=5
+TIME_SLEEP=11
 
 # Loop through all ports
 for PORT in {1..65535}; do
     
-    # Set flag variable to control the loop
+    # FLAG is false when we connect to PORT with no errors
     FLAG=true    
     while ${FLAG}; do
         
@@ -16,8 +17,8 @@ for PORT in {1..65535}; do
         
         if [[ ${CODE} -eq 7 ]]; then
             echo "cURL Code: ${CODE}. Port: ${PORT}. Wait 1 min..."
-            sleep 1m
-        else
+            sleep ${TIME_SLEEP}
+        elif [[ ${CODE} -eq 0 ]]; then
             # Set flag variable to false to exit the loop
             FLAG=false
         fi
