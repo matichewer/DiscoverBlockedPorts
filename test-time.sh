@@ -3,16 +3,21 @@
 echo "Comenzando spam de chequeo de puertos..."
 
 CANT_DE_PUERTOS=0
-TIEMPO=9
+TIEMPO=11
 
+
+START_TIME=$(date +%s)
 while true; do
-    
+   
     curl --silent --connect-timeout 5 --output /dev/null portquiz.net:80
     CODE=$?
     
     if [[ ${CODE} -eq 0 ]]; then
         CANT_DE_PUERTOS=$((CANT_DE_PUERTOS + 1))
     elif [[ ${CODE} -eq 7 ]]; then
+        END_TIME=$(date +%s) 
+        TIME_ELAPSED=$((END_TIME - START_TIME)) 
+        echo "El Tiempo para conectarse a ${CANT_DE_PUERTOS} puertos fue de ${TIME_ELAPSED} segundos"
         START_TIME=$(date +%s)  # obtener la hora actual en segundos
         echo "Baneado! Cantidad de puertos escaneados: ${CANT_DE_PUERTOS}"
         echo
