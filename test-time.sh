@@ -8,29 +8,29 @@ TIEMPO=11
 
 START_TIME=$(date +%s)
 while true; do
-   
+    
     curl --silent --connect-timeout 5 --output /dev/null portquiz.net:80
     CODE=$?
     
     if [[ ${CODE} -eq 0 ]]; then
         CANT_DE_PUERTOS=$((CANT_DE_PUERTOS + 1))
-    elif [[ ${CODE} -eq 7 ]]; then
-        END_TIME=$(date +%s) 
-        TIME_ELAPSED=$((END_TIME - START_TIME)) 
+        elif [[ ${CODE} -eq 7 ]]; then
+        END_TIME=$(date +%s)
+        TIME_ELAPSED=$((END_TIME - START_TIME))
         echo "El Tiempo para conectarse a ${CANT_DE_PUERTOS} puertos fue de ${TIME_ELAPSED} segundos"
         START_TIME=$(date +%s)  # obtener la hora actual en segundos
         echo "Baneado! Cantidad de puertos escaneados: ${CANT_DE_PUERTOS}"
         echo
-
-        while true; do    
+        
+        while true; do
             echo "CURL error code: ${CODE}. Sleep ${TIEMPO} seconds and retry..."
             echo
             sleep "${TIEMPO}"
-
+            
             echo "Retry connection..."
             curl --silent --connect-timeout 2 --output /dev/null portquiz.net:3000
             CODE=$?
-    
+            
             if [[ ${CODE} -eq 0 ]]; then
                 END_TIME=$(date +%s)    # obtener la hora actual en segundos
                 TIME_ELAPSED=$((END_TIME - START_TIME))  # calcular el tiempo transcurrido
@@ -40,5 +40,5 @@ while true; do
         done
     else
         echo "Error no capturado. Code error: ${CODE}"
-    fi    
+    fi
 done
