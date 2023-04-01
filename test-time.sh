@@ -3,7 +3,7 @@
 echo "Comenzando spam de chequeo de puertos..."
 
 CANT_DE_PUERTOS=0
-TIEMPO=30
+TIEMPO=9
 
 while true; do
     
@@ -18,11 +18,14 @@ while true; do
         echo
 
         while true; do    
-            echo "Sleep ${TIEMPO} seconds.."
+            echo "CURL error code: ${CODE}. Sleep ${TIEMPO} seconds and retry..."
+            echo
             sleep "${TIEMPO}"
-            curl --silent --connect-timeout 3 --output /devnull portquiz.net:80
+
+            echo "Retry connection..."
+            curl --silent --connect-timeout 2 --output /dev/null portquiz.net:3000
             CODE=$?
-            
+    
             if [[ ${CODE} -eq 0 ]]; then
                 END_TIME=$(date +%s)    # obtener la hora actual en segundos
                 TIME_ELAPSED=$((END_TIME - START_TIME))  # calcular el tiempo transcurrido
