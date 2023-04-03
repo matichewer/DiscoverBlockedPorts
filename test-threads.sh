@@ -20,7 +20,7 @@ echo
 ejecutar_curl 100
 echo
 ejecutar_curl 105
-echo
+
 
 wait
 sort -n -o archivo1.txt archivo1.txt
