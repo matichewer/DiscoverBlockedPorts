@@ -1,4 +1,4 @@
-# Test all ports connection
+# Discover Blocked Ports
 
 
 <p align="center">  
@@ -25,7 +25,7 @@
 ## Overview
 This repository contains bash scripts designed to test the connectivity of all ports on a network. The main objective is to identify which ports are not blocked by the network, specifically tested at my university.
 
-## Open Ports on 'WiFi UNS'
+## Working ports on 'WiFi UNS'
 After executing the script in June 2022, I discovered that the only ports not blocked by the university are listed in the table below:
 
 
